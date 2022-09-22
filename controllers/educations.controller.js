@@ -2,12 +2,12 @@ const Educations = require('../models/educationsModel')
 
 class EducationsController {
   async append(req, res) {
-    const { name, years, position, company, description } = req.body
+    const { name, author, desc } = req.body
     const experienceName = await Educations.findOne({ name: name })
     if (experienceName) {
       res.status(500).message('Опыт с таким названием уже существует')
     }
-    const project = await Educations.create({ name, years, position, company, description })
+    const project = await Educations.create({ name, author, desc })
     return res.json({ project })
   }
 
